@@ -10,3 +10,19 @@
     scroll-behavior: smooth;
   }
 }
+
+.container-lg {
+  max-width: 1675px;
+}
+.container-md {
+  max-width: 1640px;
+}
+.container-sm {
+  max-width: 1120px;
+}
+
+.container-md,
+.container-lg,
+.container-sm {
+  @apply mx-auto w-full;
+}

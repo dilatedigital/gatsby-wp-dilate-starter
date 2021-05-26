@@ -38,7 +38,7 @@ module.exports = {
         btn: "215px",
       },
       width: {
-        "250px": "250px",
+        "200px": "200px",
         "slider-img-default-sm": "320px",
       },
       height: {

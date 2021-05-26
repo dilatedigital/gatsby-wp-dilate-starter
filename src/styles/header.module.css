@@ -1,3 +1,67 @@
 .header {
-  @apply bg-black py-8;
+  @apply bg-black top-0 xl:absolute xl:w-full z-30;
+}
+
+.header__flex-wrapper {
+  @apply flex p-4 items-center justify-between;
+}
+
+.header__logo {
+  @apply w-32 md:w-52;
+}
+
+.menu-btn {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary xl:hidden;
+}
+
+.main-menu {
+  @apply hidden xl:flex items-center justify-center;
+}
+
+.main-menu li:not(:last-child) {
+  @apply mr-16;
+}
+
+.main-menu li a {
+  @apply text-white;
+}
+
+.main-menu-item {
+  @apply flex items-center relative;
+}
+
+svg.menu-arrow-down {
+  @apply fill-current text-white ml-4;
+}
+
+.submenu {
+  @apply hidden absolute w-200px bg-white shadow-2xl transition-all py-4 rounded-lg top-6;
+}
+
+.submenu li a {
+  @apply text-black;
+}
+
+.main-menu-item:hover .submenu {
+  @apply block;
+}
+
+.mobile-menu-container {
+  @apply h-full top-0 fixed bg-white z-40 w-full xl:hidden transform p-4 transition overflow-scroll;
+}
+
+.mobile-menu-active {
+  @apply translate-x-0;
+}
+
+.mobile-menu-inactive {
+  @apply -translate-x-full;
+}
+
+.close-btn-container {
+  @apply flex justify-end;
+}
+
+.mobile-menu-ul {
+  @apply ml-8 relative z-10 mt-16 w-44;
 }

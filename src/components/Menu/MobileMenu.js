@@ -4,41 +4,46 @@ import { flatListToHierarchical } from "../../utils/flatListToHierarchical"
 import { SiteContext } from "../../context/SiteContext"
 import Close from "../../assets/close.svg"
 import MobileMenuLi from "./MobileMenuLi"
+import {
+  mobileMenuContainer,
+  closeBtnContainer,
+  mobileMenuUl,
+  mobileMenuActive,
+  mobileMenuInactive,
+} from "../../styles/header.module.css"
 
 const MobileMenu = ({ menu }) => {
   const menuItems = flatListToHierarchical(menu.menuItems.nodes)
 
-  let menuDefaults = {}
-
-  menuItems.forEach(item => {
-    if (item.children.length > 0) {
-      menuDefaults[item.title] = false
-    }
+  menuItems.forEach((menuItem, index) => {
+    menuItem.id = index
   })
 
+  const [active, setActive] = useState(new Array(menuItems.length).fill(false))
+
   const { isMenuOpen, toggleMenu } = useContext(SiteContext)
-  const [menuStatus, setMenuStatus] = useState(menuDefaults)
 
   return (
     <div
-      className={`h-full top-0 fixed bg-white z-40 w-full xl:hidden transform p-4 transition overflow-scroll ${
-        isMenuOpen ? "translate-x-0" : "-translate-x-full"
+      className={`${mobileMenuContainer} ${
+        isMenuOpen ? mobileMenuActive : mobileMenuInactive
       }`}
     >
-      <div className="flex justify-end">
+      <div className={closeBtnContainer}>
         <button onClick={toggleMenu} aria-label="Close">
           <Close />
         </button>
       </div>
-      <ul className="mt-70px max-w-290px ml-14 relative z-10">
+      <ul className={mobileMenuUl}>
         {menuItems.map(menuItem => {
           return (
             <MobileMenuLi
+              key={menuItem.key}
               menuItem={menuItem}
               toggleMenu={toggleMenu}
-              status={menuStatus}
-              setStatus={setMenuStatus}
-              defaults={menuDefaults}
+              onClick={setActive}
+              isOpen={active[menuItem.id]}
+              totalMenuItems={menuItems.length}
             />
           )
         })}

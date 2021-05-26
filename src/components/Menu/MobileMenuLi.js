@@ -1,57 +1,67 @@
-import React, { useState } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 import UniversalLink from "../../utils/UniversalLink"
+import ArrowDown from "../../assets/arrow-down.svg"
 
-const MobileMenuLi = ({
-  menuItem,
-  toggleMenu,
-  status,
-  setStatus,
-  defaults,
-}) => {
-  const [expanded, setExpanded] = useState(false)
+const MobileMenuLi = props => {
+  //console.log(props)
 
-  console.log(defaults)
+  const handleClick = menuItem => {
+    let a = new Array(props.totalMenuItems).fill(false).map((_, index) => {
+      if (index === menuItem && props.isOpen) {
+        return false
+      } else if (index === menuItem) {
+        return true
+      } else {
+        return false
+      }
+    })
+    return props.onClick(a)
+  }
 
   return (
-    <li key={menuItem.key} className="items-center relative menu-item mb-30px">
+    <li
+      key={props.menuItem.key}
+      className="items-center relative menu-item mb-30px"
+    >
       <div className="flex justify-between">
         <UniversalLink
-          className="font-pop text-ct-black text-lg"
+          className="text-lg"
           to={
-            menuItem.connectedNode
-              ? menuItem.connectedNode.node.uri
-              : menuItem.url
+            props.menuItem.connectedNode
+              ? props.menuItem.connectedNode.node.uri
+              : props.menuItem.url
           }
-          onClick={toggleMenu}
-          onKeyDown={toggleMenu}
+          onClick={props.toggleMenu}
+          onKeyDown={props.toggleMenu}
         >
-          {menuItem.title}
+          {props.menuItem.title}
         </UniversalLink>
-        {menuItem.children.length > 0 && (
+        {props.menuItem.children.length > 0 && (
           <button
             className="ml-4 focus:outline-none focus:ring-2 focus:ring-primary"
             aria-label="Toggle Submenu"
+            onClick={() => handleClick(props.menuItem.id)}
           >
-            down
+            <ArrowDown />
           </button>
         )}
       </div>
 
-      {menuItem.children.length > 0 && (
+      {props.menuItem.children.length > 0 && (
         <ul
           className={`submenu w-250px bg-transparent transition-all px-4 border-l border-gray-200 ${
-            expanded ? "mt-8 max-h-full" : "max-h-0 overflow-hidden"
+            props.isOpen ? "mt-4 max-h-full" : "max-h-0 overflow-hidden"
           }`}
         >
-          {menuItem.children.map(subItem => {
+          {props.menuItem.children.map(subItem => {
             return (
               <li key={subItem.key}>
                 <UniversalLink
                   to={subItem.url}
                   className="font-pop text-ct-black text-mobile-submenu"
-                  onKeyDown={toggleMenu}
-                  onClick={toggleMenu}
+                  onKeyDown={props.toggleMenu}
+                  onClick={props.toggleMenu}
                 >
                   {subItem.title}
                 </UniversalLink>
