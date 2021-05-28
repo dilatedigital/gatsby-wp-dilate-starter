@@ -53,12 +53,14 @@ const Header = () => {
             {wpMenu ? (
               <Menu menu={wpMenu} />
             ) : (
-              "Please configure your main menu."
+              <div className="text-white">
+                Please configure your "main-menu".
+              </div>
             )}
           </div>
         </div>
       </div>
-      <MobileMenu menu={wpMenu} />
+      {wpMenu && <MobileMenu menu={wpMenu} />}
     </header>
   )
 }
