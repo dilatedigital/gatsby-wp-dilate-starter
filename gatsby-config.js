@@ -10,7 +10,8 @@ module.exports = {
   siteMetadata: {
     title: `Dilate Gatsby-WordPress Starter`,
     description: `A theme starter for Dilate powered by WordPress and GatsbyJS`,
-    author: `@jejomarss`,
+    author: `Dilate Digital - Jejomar Dorongon`,
+    image: "/dilate-digital-agency-perth.jpeg",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
