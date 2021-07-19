@@ -12,6 +12,7 @@ module.exports = {
     description: `A theme starter for Dilate powered by WordPress and GatsbyJS`,
     author: `Dilate Digital - Jejomar Dorongon`,
     image: "/dilate-digital-agency-perth.jpeg",
+    siteUrl: `https://google.com/`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

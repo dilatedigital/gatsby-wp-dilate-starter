@@ -1,5 +1,6 @@
 import React from "react"
-import SEO from "../components/seo"
+import { graphql } from "gatsby"
+import SEO from "../components/SEO"
 import Layout from "../components/layout"
 
 const Home = ({ data: { wpPage } }) => {
@@ -34,6 +35,7 @@ export const query = graphql`
           }
         }
       }
+    }
   }
 `
 
